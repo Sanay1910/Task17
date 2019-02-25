@@ -2,7 +2,7 @@ import java.sql.*;
 
 public class Create {
 
-    public static void personTable() {
+    public static void person() {
         // SQLite connection string
         String url = "jdbc:sqlite:src/main/resources/people.sqlite";
 

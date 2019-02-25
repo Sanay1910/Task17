@@ -8,11 +8,13 @@ public class task17 {
         Insert insert = new Insert();
         Select select = new Select();
         Delete delete = new Delete();
+        Menu run = new Menu();
+        run.menu(select);
 
         //create.newDatabase("people.sqlite");
 
         /*
-        create.personTable();
+        create.person();
         create.homeAddress();
         create.contactNumber();
         */
@@ -35,7 +37,8 @@ public class task17 {
         insert.homeAddress(1, "Bergen");
         insert.homeAddress(3, "Talulu");
         */
-        select.person();
+        //select.person();
+        //select.personAll();
 
     }
 }
