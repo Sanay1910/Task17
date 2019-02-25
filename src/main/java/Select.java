@@ -1,9 +1,9 @@
 import java.sql.*;
 
 public class Select {
-    private static Connection connect() {
+    private Connection connect() {
         // SQLite connection string
-        String url = "jdbc:sqlite:src/main/resources/task17.sqlite";
+        String url = "jdbc:sqlite:src/main/resources/people.sqlite";
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);
@@ -13,44 +13,74 @@ public class Select {
         return conn;
     }
 
-    public static void selectPerson(){
-        String sql =  "SELECT person.id, firstName, lastName, birth, address, relatives, personalEmail, workEmail, contact_id FROM person"
-                + " INNER JOIN contactNumber ON contactNumber.id = person.contact_id";
+    public void person(){
 
-        try (Connection conn = connect();
+        //id, firstname, lastname, birth, address, relatives, personalmail, workmail
+        String sql = "SELECT " +
+                "person.ID, FirstName, LastName, Birth, Address, Relatives, PersonalMail, WorkMail, contactNumber.mobile" +
+                " FROM Person" +
+                " INNER JOIN homeAddress ON homeAddress.ID = person.AddressID" +
+                " INNER JOIN contactNumber ON contactNumber.ID = person.contactID";
+
+        try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
              ResultSet rs    = stmt.executeQuery(sql)){
 
             // loop through the result set
             while (rs.next()) {
-                System.out.println("ID: " + rs.getInt("id") +  "\t");
-                System.out.println("first name: " + rs.getString("firstName") + "\t");
-                System.out.println("last name: " + rs.getString("lastName") + "\t");
-                System.out.println("birthdate: " + rs.getString("birth") + "\t");
-                System.out.println("Address: " + rs.getString("address") + "\t");
-                System.out.println("relatives " + rs.getString("relatives") + "\t");
-                System.out.println("personal email: " + rs.getString("personalEmail") + "\t");
-                System.out.println("work email: " + rs.getString("workEmail") + "\t");
-                System.out.println("contact_id: " + rs.getString("contact_id") + "\t");
+                System.out.printf("%-10s", rs.getString("ID"));
+                System.out.printf("%-15s", rs.getString("FirstName"));
+                System.out.printf("%-15s", rs.getString("LastName"));
+                System.out.printf("%-10s", rs.getString("Birth"));
+                System.out.printf("%-15s", rs.getString("Address"));
+                System.out.printf("%-20s", rs.getString("Relatives"));
+                System.out.printf("%-20s", rs.getString("PersonalMail"));
+                System.out.printf("%-20s", rs.getString("WorkMail"));
+                System.out.printf("%-20s", rs.getString("mobile"));
+                System.out.println();
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public static void selectContact(){
-        String sql =  "SELECT id, work, home, mobile FROM contactNumber";
+    public void contactNumber() {
 
-        try (Connection conn = connect();
+        //id, work, home, mobile
+        String sql =  "SELECT "
+                + "contactNumber.ID, work, home, mobile "
+                + "FROM contactNumber";
+
+        try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
              ResultSet rs    = stmt.executeQuery(sql)){
 
             // loop through the result set
             while (rs.next()) {
-                System.out.println("ID: " + rs.getInt("id") +  "\t");
-                System.out.println("work number: " + rs.getString("work") + "\t");
-                System.out.println("home number: " + rs.getString("home") + "\t");
-                System.out.println("mobile number: " + rs.getString("mobile") + "\t");
+                System.out.printf("%-10s", rs.getString("contactNumber.ID"));
+                System.out.printf("%-10s", rs.getString("work"));
+                System.out.printf("%-10s", rs.getString("home"));
+                System.out.printf("%-10s", rs.getString("mobile"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void homeAddress() {
+
+        String sql = "SELECT "
+                + "homeAddress.ID, address "
+                + "FROM homeAddress";
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+
+            // loop through the result set
+            while (rs.next()) {
+                System.out.printf("%-10s", rs.getString("homeAddress.ID"));
+                System.out.printf("%-10s", rs.getString("address"));
+
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

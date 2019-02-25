@@ -13,24 +13,24 @@ public class Update {
         return conn;
     }
 
-    public void updatePerson(int id,
+    public void person(int id,
                        String firstName,
                        String lastName,
                        String birth,
-                       String address,
+                       String addressID,
                        String relatives,
                        String personalEmail,
                        String workEmail,
-                       int contact_id
+                       int contactID
                        ) {
         String sql = "UPDATE person SET firstName = ? , "
                 + "lastName = ? , "
                 + "birth = ? , "
-                + "address = ? , "
+                + "addressID = ? , "
                 + "relatives = ? , "
                 + "personalEmail = ? , "
                 + "workEmail = ? ,"
-                + "contact_id = ?  "
+                + "contactID = ?  "
                 + "WHERE person.id = ? ";
 
         try (Connection conn = this.connect();
@@ -40,11 +40,11 @@ public class Update {
             pstmt.setString(1, firstName);
             pstmt.setString(2, lastName);
             pstmt.setString(3, birth);
-            pstmt.setString(4, address);
+            pstmt.setString(4, addressID);
             pstmt.setString(5, relatives);
             pstmt.setString(6, personalEmail);
             pstmt.setString(7, workEmail);
-            pstmt.setInt(8, contact_id);
+            pstmt.setInt(8, contactID);
             pstmt.setInt(9, id);
             // update
             pstmt.executeUpdate();
@@ -53,8 +53,8 @@ public class Update {
         }
     }
 
-    public void updateContactNumber(int id, String work, String home, String mobile) {
-        String sql = "UPDATE contactNumber SET work = ? , home = ? , mobile WHERE id = ?";
+    public void contactNumber(int id, String work, String home, String mobile) {
+        String sql = "UPDATE contactNumber SET work = ? , home = ? , mobile WHERE ContactNumber.id = ?";
         try(Connection conn = this.connect();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, work);
@@ -66,5 +66,14 @@ public class Update {
         }
     }
 
-
+    public void homeAddress( int id, String address ) {
+        String sql = "UPDATE homeAddress SET address = ? WHERE homeAddress.id = ?";
+        try(Connection conn = this.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, address);
+            pstmt.setInt(2, id);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
