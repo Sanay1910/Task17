@@ -13,7 +13,7 @@ public class Insert {
         return conn;
     }
 
-    public void person(int ID, String firstName, String lastName, String birth, int addressID   , String relatives, String personalMail, String workMail,int contactID) {
+    public void person(int ID, String firstName, String lastName, String birth, int addressID , String relatives, String personalMail, String workMail,int contactID) {
         String sql = "INSERT INTO person(ID,firstName,lastName,birth,addressID,relatives,personalMail,workMail,contactID) VALUES(?,?,?,?,?,?,?,?,?)";
 
         //id, firstname, lastname, birth, address, relatives, personalmail, workmail
