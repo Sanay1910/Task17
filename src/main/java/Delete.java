@@ -2,18 +2,6 @@ import java.sql.*;
 
 public class Delete {
 
-    private Connection connect() {
-        // SQLite connection string
-        String url = "jdbc:sqlite:src/main/resources/people.sqlite";
-        Connection conn = null;
-        try {
-            conn = DriverManager.getConnection(url);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return conn;
-    }
-
     public void person(int id) {
         String sql = "DELETE FROM person WHERE id = ?";
 
@@ -62,4 +50,15 @@ public class Delete {
         }
     }
 
+    private Connection connect() {
+        // SQLite connection string
+        String url = "jdbc:sqlite:src/main/resources/people.sqlite";
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection(url);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return conn;
+    }
 }

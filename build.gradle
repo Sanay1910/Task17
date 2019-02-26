@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'no.experis.task17'
+group 'no.experis'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8

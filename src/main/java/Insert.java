@@ -13,7 +13,7 @@ public class Insert {
         return conn;
     }
 
-    public void person(int ID, String firstName, String lastName, String birth, int addressID   , String relatives, String personalMail, String workMail,int contactID) {
+    public void person(int ID, String firstName, String lastName, String birth, int addressID , String relatives, String personalMail, String workMail,int contactID) {
         String sql = "INSERT INTO person(ID,firstName,lastName,birth,addressID,relatives,personalMail,workMail,contactID) VALUES(?,?,?,?,?,?,?,?,?)";
 
         //id, firstname, lastname, birth, address, relatives, personalmail, workmail
@@ -28,6 +28,34 @@ public class Insert {
             pstmt.setString(7,personalMail);
             pstmt.setString(8,workMail);
             pstmt.setInt(9,contactID);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void relationType(String relationType) {
+        String url = "jdbc:sqlite:src/main/resources/people.sqlite";
+        String sql = "INSERT INTO relationtype(relationship) VALUES(?)";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, relationType);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void relation(int fromPersonID, int toPersonID, int relation) {
+        String url = "jdbc:sqlite:src/main/resources/people.sqlite";
+        String sql = "INSERT INTO relation(fromPersonID, toPersonID, relation) VALUES(?,?,?)";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, fromPersonID);
+            pstmt.setInt(2, toPersonID);
+            pstmt.setInt(3, relation);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());

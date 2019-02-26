@@ -2,7 +2,7 @@ import java.sql.*;
 
 public class Create {
 
-    public static void personTable() {
+    public static void person() {
         // SQLite connection string
         String url = "jdbc:sqlite:src/main/resources/people.sqlite";
 
@@ -19,6 +19,49 @@ public class Create {
                 + " contactID integer NOT NULL,\n"
                 + " FOREIGN KEY(addressID) REFERENCES homeAddress (ID),"
                 + " FOREIGN KEY(contactID) REFERENCES contactNumber (ID)"
+                + ");";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             Statement stmt = conn.createStatement()) {
+            // create a new table
+            stmt.execute(sql);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void relation(){
+        // SQLite connection string
+        String url = "jdbc:sqlite:src/main/resources/people.sqlite";
+
+        // SQL statement for creating a new table
+        String sql = "CREATE TABLE IF NOT EXISTS relation (\n"
+                + "	id integer PRIMARY KEY,\n"
+                + "	fromPersonID int NOT NULL,\n"
+                + "	toPersonID int NOT NULL,\n"
+                + "	relation int NOT NULL,\n"
+                + "	FOREIGN KEY(fromPersonID) REFERENCES person(ID),\n"
+                + "	FOREIGN KEY(toPersonID) REFERENCES person(ID),\n"
+                + "	FOREIGN KEY(relation) REFERENCES relationType(ID)\n"
+                + ");";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             Statement stmt = conn.createStatement()) {
+            // create a new table
+            stmt.execute(sql);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void relationType(){
+        // SQLite connection string
+        String url = "jdbc:sqlite:src/main/resources/people.sqlite";
+
+        // SQL statement for creating a new table
+        String sql = "CREATE TABLE IF NOT EXISTS relationType (\n"
+                + "	ID integer PRIMARY KEY,\n"
+                + "	Relationship text NOT NULL\n"
                 + ");";
 
         try (Connection conn = DriverManager.getConnection(url);
@@ -111,3 +154,5 @@ public class Create {
 
 
 }
+
+

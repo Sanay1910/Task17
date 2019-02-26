@@ -1,4 +1,5 @@
 import java.sql.*;
+
 public class Update {
 
     private static Connection connect() {
@@ -22,7 +23,7 @@ public class Update {
                        String personalEmail,
                        String workEmail,
                        int contactID
-                       ) {
+    ) {
         String sql = "UPDATE person SET firstName = ? , "
                 + "lastName = ? , "
                 + "birth = ? , "
