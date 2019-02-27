@@ -12,14 +12,6 @@ public class SQLtoREST {
     private static Connection conn = null;
     public static ArrayList<Person> person = new ArrayList<Person>();
 
-    public static void main(String[] args) {
-
-        openConn();
-
-        readPeople();
-
-        SpringApplication.run(SQLtoREST.class, args);
-    }
 
     public static void openConn(){
         try{
