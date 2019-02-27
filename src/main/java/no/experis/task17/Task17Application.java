@@ -27,6 +27,10 @@ public class Task17Application {
 		openConn();
 
 		readPeople();
+		Select select = new Select();
+		//select.person();
+		//select.relatives();
+		select.relatives2();
 
 		SpringApplication.run(SQLtoREST.class, args);
 	}

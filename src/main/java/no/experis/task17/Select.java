@@ -48,7 +48,37 @@ public class Select {
         }
     }
 
+    public static ArrayList<Relation> relatives2(){
+        ArrayList<Relation> relations= new ArrayList<>();
+
+        String sql = "SELECT p1.ID as personID, p2.firstName as relativeName, relationship" +
+                " FROM relation INNER JOIN person p1 ON relation.fromPersonID = p1.ID" +
+                " INNER JOIN person p2 ON relation.toPersonID = p2.ID" +
+                " INNER JOIN relationType ON relation.relation = relationType.id " ;
+
+        String url = "jdbc:sqlite:src/main/resources/people.sqlite";
+        try (Connection conn = DriverManager.getConnection(url);
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+
+
+            while (rs.next()) {
+                relations.add(
+                        new Relation(
+                                rs.getString("personID"),
+                                rs.getString("relationship"),
+                                rs.getString("relativeName")
+                ));
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return  relations;
+    }
+
     public static void relatives(){
+
         String sql = "SELECT p1.firstName as personName, p2.firstName as relativeName, relationship" +
                      " FROM relation INNER JOIN person p1 ON relation.fromPersonID = p1.ID" +
                      " INNER JOIN person p2 ON relation.toPersonID = p2.ID" +
