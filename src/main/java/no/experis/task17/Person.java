@@ -1,6 +1,9 @@
 package no.experis.task17;
 
 import java.util.ArrayList;
+import java.util.*;
+
+import static no.experis.task17.SQLtoREST.person;
 
 public class Person {
 
@@ -11,11 +14,17 @@ public class Person {
     ContactNumber contact = new ContactNumber();
 
 
-    Person(int ID, String firstName, String lastName, String birth,String address, ContactNumber contact){
+    /*Person(int ID, String firstName, String lastName, String birth,String address, ContactNumber contact){
         this(ID, firstName,lastName, birth, address, contact,null,null,null);
+    }*/
+
+
+
+    Person(){
+
     }
 
-    Person(int ID, String firstName, String lastName,String birth, String address, ContactNumber contact,String personalMail, String workMail, ArrayList<Relation> relation){
+    Person(int ID,String firstName, String lastName,String birth, String address, String personalMail, String workMail, ContactNumber contact, ArrayList<Relation> relation){
         this.ID = ID;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -26,6 +35,31 @@ public class Person {
         this.workMail = workMail;
         this.relation.addAll(relation);
 
+    }
+
+    Person(String firstName, String lastName,String birth){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birth = birth;
+    }
+
+    Person(int ID, String firstName, String lastName,String birth){
+        this.ID = ID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birth = birth;
+    }
+
+    public Person(int id, String firstName, String lastName, String birth, String address, ContactNumber contactNumber, String personalMail, String workMail, ArrayList<Relation> relation) {
+        this.ID = ID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birth = birth;
+        this.address = address;
+        this.contact = contact;
+        this.personalMail = personalMail;
+        this.workMail = workMail;
+        this.relation.addAll(relation);
     }
     /*Person(int ID, String firstName, String lastName, String address, ContactNumber contact, String personalMail, String workMail, ArrayList<Relation> relation    ){
         this.ID = ID;
@@ -59,6 +93,10 @@ public class Person {
 
     public String getLastName(){
         return lastName;
+    }
+
+    public String getBirth() {
+        return birth;
     }
 
     public void setAddress(String address) {
@@ -108,6 +146,8 @@ public class Person {
     public String getWorkEmail(){
         return workMail;
     }
+
+
 
 
 

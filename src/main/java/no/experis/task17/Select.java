@@ -48,6 +48,33 @@ public class Select {
         }
     }
 
+    /*public  static ArrayList<String> addresses(){
+
+        //id, firstname, lastname, birth, address, relatives, personalmail, workmail
+        String sql = "SELECT " +
+                "ID, address" +
+                " FROM HomeAddress"
+                ;
+        ArrayList<String> address = new ArrayList<>();
+
+        String url = "jdbc:sqlite:src/main/resources/people.sqlite";
+        try (Connection conn = DriverManager.getConnection(url);
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+
+
+            // loop through the result set
+            while (rs.next()) {
+                address.add(rs.getString("ID"));
+                address.add(rs.getString("Address"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return address;
+    }
+    */
+
     public static ArrayList<ContactNumber> contact(){
         ArrayList<ContactNumber> contact= new ArrayList<>();
 
@@ -77,6 +104,34 @@ public class Select {
         return  contact;
     }
 
+
+    public static ArrayList<Address> livingAt(){
+        ArrayList<Address> addresses= new ArrayList<>();
+
+        String sql = "SELECT homeAddress.ID, person.ID, address, addressID" +
+                " FROM HomeAddress" +
+                " LEFT JOIN person ON person.addressID = homeAddress.ID" ;
+
+        String url = "jdbc:sqlite:src/main/resources/people.sqlite";
+        try (Connection conn = DriverManager.getConnection(url);
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+
+
+            while (rs.next()) {
+                addresses.add(
+                        new Address(
+                                rs.getInt("addressID"),
+                                rs.getInt("ID"),
+                                rs.getString("address")
+                        ));
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return  addresses;
+    }
 
     public static ArrayList<Relation> relatives2(){
         ArrayList<Relation> relations= new ArrayList<>();
@@ -130,7 +185,7 @@ public class Select {
             System.out.println(e.getMessage());
         }
     }
-    public void personColumns(String [] choices, ArrayList<String> personSelect){
+    public void personColumns(String [] choices, ArrayList<String> personSelect)    {
 
         String sel = "";
         for (int i = 0; i < choices.length; i++) {

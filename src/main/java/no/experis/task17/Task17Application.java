@@ -2,8 +2,7 @@ package no.experis.task17;
 
 import org.springframework.boot.SpringApplication;
 
-import static no.experis.task17.SQLtoREST.openConn;
-import static no.experis.task17.SQLtoREST.readPeople;
+import static no.experis.task17.SQLtoREST.*;
 
 public class Task17Application {
 
@@ -25,12 +24,15 @@ public class Task17Application {
 		//select.personAll();
 
 		openConn();
-
 		readPeople();
+		openConn();
+		readAddress();
+		//listAll();
+
 		Select select = new Select();
 		//select.person();
 		//select.relatives();
-		select.relatives2();
+		//select.relatives2();
 
 		SpringApplication.run(SQLtoREST.class, args);
 	}

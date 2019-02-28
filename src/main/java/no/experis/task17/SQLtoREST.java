@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 import static no.experis.task17.Select.contact;
 import static no.experis.task17.Select.relatives2;
@@ -12,10 +13,12 @@ import static no.experis.task17.Select.relatives2;
 @SpringBootApplication
 public class SQLtoREST {
 
+
     private static String URL = "jdbc:sqlite:src/main/resources/people.sqlite";
     private static Connection conn = null;
     public static ArrayList<Person> person = new ArrayList<Person>();
     public static ArrayList<Relation> relation = new ArrayList<Relation>();
+    public static ArrayList<Address> address = new ArrayList<>();
 
 
     public static void openConn(){
@@ -70,7 +73,7 @@ public class SQLtoREST {
     }
 
     public static void readPeople(){
-
+    System.out.println("readPeople");
         //Select relations = new Select();
         try{
             PreparedStatement preparedStatement =
@@ -115,5 +118,56 @@ public class SQLtoREST {
             }
         }
 
+
     }
+
+    public static void readAddress(){
+        System.out.println("readAddress");
+        //Select relations = new Select();
+        try{
+            PreparedStatement preparedStatement =
+                    conn.prepareStatement("SELECT ID, address" +
+                            " FROM HomeAddress"
+                    );
+
+
+
+           /* ("SELECT homeAddress.ID, address, addressID" +
+                    " FROM HomeAddress" +
+                    " LEFT JOIN person ON person.addressID = homeAddress.ID" */
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+
+                address.add(
+                        new Address(
+                                resultSet.getInt("ID"),
+                                resultSet.getString("Address")
+                        ));
+            }
+
+
+        }
+        catch (Exception e){
+            System.out.println("Something went wrong.");
+            System.out.println(e.toString());
+        }
+        finally {
+            try {
+                conn.close();
+            }
+            catch (Exception e){
+                System.out.println("Something went wrong.");
+                System.out.println(e.toString());
+            }
+        }
+
+    }
+    /*
+    public static ArrayList<Person> listAll() {
+        ArrayList<Person> persons = new ArrayList<>();
+        person.forEach(persons::add);
+        return persons;
+    }
+    */
 }

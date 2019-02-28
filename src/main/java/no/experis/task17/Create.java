@@ -82,7 +82,7 @@ public class Create {
         // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS homeAddress (\n"
                 + "	ID integer PRIMARY KEY,\n"
-                + "	address text NOT NULL\n"
+                + "	address text NOT NULL UNIQUE\n"
                 + ");";
 
         try (Connection conn = DriverManager.getConnection(url);
