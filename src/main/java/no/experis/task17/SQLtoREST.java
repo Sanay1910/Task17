@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.sql.*;
 import java.util.ArrayList;
 
+import static no.experis.task17.Select.contact;
 import static no.experis.task17.Select.relatives2;
 
 
@@ -74,16 +75,16 @@ public class SQLtoREST {
         try{
             PreparedStatement preparedStatement =
                     //conn.prepareStatement("SELECT * FROM customer");
-                    conn.prepareStatement(" SELECT person.ID, firstName, lastName, birth, address" +
+                    conn.prepareStatement(" SELECT person.ID, firstName, lastName, birth, address, personalMail, workMail, work, home, mobile" +
                             " FROM Person" +
-                            " INNER JOIN homeAddress ON homeAddress.ID = person.AddressID"
+                            " INNER JOIN homeAddress ON homeAddress.ID = person.AddressID" +
+                            " INNER JOIN contactNumber ON contactNumber.ID = person.contactID"
                     );
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            for(Relation rel: relation){
-                System.out.println(rel);
-            }
+            ArrayList<ContactNumber> contact = new ArrayList<>();
             while (resultSet.next()) {
+
                 person.add(
                         new Person(
                                 resultSet.getInt("ID"),
@@ -91,6 +92,9 @@ public class SQLtoREST {
                                 resultSet.getString("lastName"),
                                 resultSet.getString("birth"),
                                 resultSet.getString("Address"),
+                                new ContactNumber(resultSet.getString("work"),resultSet.getString("home"),resultSet.getString("mobile")),
+                                resultSet.getString("personalMail"),
+                                resultSet.getString("workMail"),
                                 relatives2()
                         ));
             }

@@ -48,6 +48,36 @@ public class Select {
         }
     }
 
+    public static ArrayList<ContactNumber> contact(){
+        ArrayList<ContactNumber> contact= new ArrayList<>();
+
+        String sql = " SELECT person.ID, firstName, lastName, birth, address,  personalMail, workMail, home, work, mobile" +
+                " FROM Person" +
+                " INNER JOIN homeAddress ON homeAddress.ID = person.AddressID" +
+                " INNER JOIN contactNumber ON contactNumber.ID = person.contactID" ;
+
+        String url = "jdbc:sqlite:src/main/resources/people.sqlite";
+        try (Connection conn = DriverManager.getConnection(url);
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+
+
+            while (rs.next()) {
+                contact.add(
+                        new ContactNumber(
+                                rs.getString("home"),
+                                rs.getString("work"),
+                                rs.getString("mobile")
+                        ));
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return  contact;
+    }
+
+
     public static ArrayList<Relation> relatives2(){
         ArrayList<Relation> relations= new ArrayList<>();
 
