@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a24e24aa-606f-48c6-abf6-85a84ba569b7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/no/experis/task17/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/no/experis/task17/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/no/experis/task17/Insert.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/no/experis/task17/Insert.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/no/experis/task17/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/no/experis/task17/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/people.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/people.sqlite" afterDir="false" />
-    </list>
+    <list default="true" id="a24e24aa-606f-48c6-abf6-85a84ba569b7" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -121,7 +116,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/people.sqlite">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
+            <state relative-caret-position="270">
               <caret line="52" column="12" selection-start-line="52" selection-start-column="3" selection-end-line="52" selection-end-column="12" />
             </state>
           </provider>
@@ -463,22 +458,21 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Image Layers" order="0" />
       <window_info id="Designer" order="1" />
       <window_info id="UI Designer" order="2" />
       <window_info id="Capture Tool" order="3" />
       <window_info id="Favorites" order="4" sideWeight="0.5015723" side_tool="true" weight="0.24980484" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" sideWeight="0.49842766" visible="true" weight="0.16375838" />
+      <window_info content_ui="combo" id="Project" order="5" sideWeight="0.49842766" visible="true" weight="0.16375838" />
       <window_info id="Structure" order="6" sideWeight="0.5015723" side_tool="true" weight="0.24980484" />
       <window_info anchor="bottom" id="Version Control" order="0" />
-      <window_info anchor="bottom" id="Terminal" order="1" weight="0.32861635" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="1" visible="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="3" weight="0.32861635" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" />
-      <window_info anchor="bottom" id="Run" order="6" visible="true" weight="0.40084985" />
+      <window_info anchor="bottom" id="Run" order="6" weight="0.40084985" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
@@ -733,7 +727,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/people.sqlite">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
+        <state relative-caret-position="270">
           <caret line="52" column="12" selection-start-line="52" selection-start-column="3" selection-end-line="52" selection-end-column="12" />
         </state>
       </provider>
