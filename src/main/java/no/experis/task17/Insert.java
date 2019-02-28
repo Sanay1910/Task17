@@ -15,8 +15,8 @@ public class Insert {
         return conn;
     }
 
-    public void person2(int id, String firstName, String lastName, String birth/*, String address*/) {
-        String sql = "INSERT INTO person(ID,firstName,lastName,birth) VALUES(?,?,?,?)";
+    public void person2(int id, String firstName, String lastName, String birth, int AddressID, int ContactID) {
+        String sql = "INSERT INTO person(ID,firstName,lastName,birth, AddressID, ContactID) VALUES(?,?,?,?,?,?)";
 
         //id, firstname, lastname, birth, address, relatives, personalmail, workmail
         try (Connection conn = this.connect();
@@ -25,6 +25,8 @@ public class Insert {
             pstmt.setString(2, firstName);
             pstmt.setString(3,lastName);
             pstmt.setString(4,birth);
+            pstmt.setInt(5, AddressID);
+            pstmt.setInt(6,ContactID);
            /* pstmt.setString(5,address); */
             pstmt.executeUpdate();
         } catch (SQLException e) {

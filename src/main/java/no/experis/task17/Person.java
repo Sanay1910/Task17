@@ -10,6 +10,10 @@ public class Person {
     //ArrayList<ContactNumber> contact = new ArrayList<>();
     ContactNumber contact = new ContactNumber();
 
+    Person() {
+
+    }
+
 
     Person(int ID, String firstName, String lastName, String birth,String address, ContactNumber contact){
         this(ID, firstName,lastName, birth, address, contact,null,null,null);
@@ -109,6 +113,13 @@ public class Person {
         return workMail;
     }
 
+    public void setBirth(String birth) {
+        this.birth = birth;
+    }
+
+    public String getBirth() {
+        return birth;
+    }
 
 
 

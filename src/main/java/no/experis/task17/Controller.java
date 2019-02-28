@@ -14,7 +14,7 @@ public class Controller {
     private ArrayList<Person> persons = new ArrayList<>();
     private AtomicInteger nextId = new AtomicInteger(SQLtoREST.person.size());
     Insert insert = new Insert();
-    private AtomicInteger nextAddressId = new AtomicInteger(SQLtoREST.address.size())
+    //private AtomicInteger nextAddressId = new AtomicInteger(SQLtoREST.address.size())
 
     @RequestMapping("/person")
     public Person personFind(@RequestParam(value = "ID", defaultValue = "Meh") int ID) {
@@ -57,7 +57,7 @@ public class Controller {
             //per.birth = newPerson.birth;
             //per.address = newPerson.address;
             //per.setID(nextId.incrementAndGet());
-            insert.person2(newPerson.ID, newPerson.firstName, newPerson.lastName, newPerson.birth);
+            insert.person2(newPerson.ID, newPerson.firstName, newPerson.lastName, newPerson.birth, 12, 12);
 
         System.out.println(" --- PERSON ADDED --- ");
         return newPerson;
