@@ -16,20 +16,21 @@ public class Task17Application {
 		//createNewTable();
 		//Menu run = new Menu();
 
-		//t.test();
-
 		//run.menu(select);
+		//Task17Application t = new Task17Application();
+		//t.test();
 
 
 		//select.person();
 		//select.personAll();
 
 		openConn();
-
 		readPeople();
 		Select select = new Select();
+
 		//select.person();
 		//select.relatives();
+
 		select.relatives2();
 
 		SpringApplication.run(SQLtoREST.class, args);

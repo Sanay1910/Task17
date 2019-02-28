@@ -15,6 +15,7 @@ public class SQLtoREST {
     private static Connection conn = null;
     public static ArrayList<Person> person = new ArrayList<Person>();
     public static ArrayList<Relation> relation = new ArrayList<Relation>();
+    public static ArrayList<ContactNumbers> numbers = new ArrayList<ContactNumbers>();
 
 
     public static void openConn(){
@@ -54,18 +55,18 @@ public class SQLtoREST {
             }
         }
         catch (Exception e){
+            System.out.println("Something went wrong.");
+            System.out.println(e.toString());
+        }
+        finally {
+            try {
+                conn.close();
+            }
+            catch (Exception e){
                 System.out.println("Something went wrong.");
                 System.out.println(e.toString());
             }
-        finally {
-                try {
-                    conn.close();
-                }
-                catch (Exception e){
-                    System.out.println("Something went wrong.");
-                    System.out.println(e.toString());
-                }
-            }
+        }
     }
 
     public static void readPeople(){
@@ -74,9 +75,10 @@ public class SQLtoREST {
         try{
             PreparedStatement preparedStatement =
                     //conn.prepareStatement("SELECT * FROM customer");
-                    conn.prepareStatement(" SELECT person.ID, firstName, lastName, birth, address" +
+                    conn.prepareStatement(" SELECT person.ID, firstName, lastName, birth, address, personalMail, workMail, home, work, mobile" +
                             " FROM Person" +
-                            " INNER JOIN homeAddress ON homeAddress.ID = person.AddressID"
+                            " INNER JOIN homeAddress ON homeAddress.ID = person.AddressID" +
+                            " INNER JOIN contactNumber ON contactNumber.ID = person.contactID"
                     );
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -84,15 +86,23 @@ public class SQLtoREST {
                 System.out.println(rel);
             }
             while (resultSet.next()) {
-                person.add(
-                        new Person(
-                                resultSet.getInt("ID"),
-                                resultSet.getString("firstName"),
-                                resultSet.getString("lastName"),
-                                resultSet.getString("birth"),
-                                resultSet.getString("Address"),
-                                relatives2()
-                        ));
+                Person p = new Person();
+                p.setID(resultSet.getInt("ID"));
+                p.setFirstName(resultSet.getString("firstName"));
+                p.setLastName(resultSet.getString("lastName"));
+                p.setAddress(resultSet.getString("address"));
+                p.setPersonalEmail(resultSet.getString("personalMail"));
+                p.setWorkEmail(resultSet.getString("workMail"));
+                p.setRelation(relatives2());
+
+                ContactNumbers n = new ContactNumbers();
+                n.setHomeNum(resultSet.getString("home"));
+                n.setWorkNum(resultSet.getString("work"));
+                n.setMobileNum(resultSet.getString("mobile"));
+                person.add(p);
+                p.getContact().add(n);
+                person.add(p);
+
             }
 
 

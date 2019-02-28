@@ -15,6 +15,23 @@ public class Insert {
         return conn;
     }
 
+    public void person2(int id, String firstName, String lastName, String birth/*, String address*/) {
+        String sql = "INSERT INTO person(ID,firstName,lastName,birth) VALUES(?,?,?,?)";
+
+        //id, firstname, lastname, birth, address, relatives, personalmail, workmail
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            pstmt.setString(2, firstName);
+            pstmt.setString(3,lastName);
+            pstmt.setString(4,birth);
+           /* pstmt.setString(5,address); */
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public void person(int ID, String firstName, String lastName, String birth, int addressID , String relatives, String personalMail, String workMail,int contactID) {
         String sql = "INSERT INTO person(ID,firstName,lastName,birth,addressID,relatives,personalMail,workMail,contactID) VALUES(?,?,?,?,?,?,?,?,?)";
 

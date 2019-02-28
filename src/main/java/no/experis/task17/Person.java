@@ -1,5 +1,7 @@
 package no.experis.task17;
 
+import org.yaml.snakeyaml.events.Event;
+
 import java.util.ArrayList;
 
 public class Person {
@@ -7,30 +9,27 @@ public class Person {
     String firstName, lastName,birth, address, personalEmail, workEmail;
     int ID;
     ArrayList<Relation> relation = new ArrayList<>();
-    ArrayList<String> contact = new ArrayList<>();
+    ArrayList<ContactNumbers> contact = new ArrayList<>();
 
-    Person(int ID, String firstName, String lastName,String birth, String address, ArrayList<Relation> relation){
+    public Person(){
         this.ID = ID;
-        this.firstName = firstName;
+        this.firstName= firstName;
         this.lastName = lastName;
         this.birth = birth;
         this.address = address;
         this.relation.addAll(relation);
     }
 
-    Person(int ID, String firstName, String lastName, String address, ArrayList<String> contact){
-        this(ID, firstName,lastName,address,contact,null,null,null);
-    }
-
-    Person(int ID, String firstName, String lastName, String address, ArrayList<String> contact, String personalEmail, String workEmail, ArrayList<Relation> relation){
-        this.firstName = firstName;
+    public Person(String firstName, String lastName, String birth/*, String address*/){
+        this.ID = ID;
+        this.firstName= firstName;
         this.lastName = lastName;
-        this.address = address;
-        this.contact = contact;
-        this.personalEmail = personalEmail;
-        this.workEmail = workEmail;
+        this.birth = birth;
+        //this.address = address;
         this.relation.addAll(relation);
     }
+
+
 
     public void setID(int ID) {
         this.ID = ID;
@@ -39,8 +38,13 @@ public class Person {
     public String getID(){
         return ID + "";
     }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public ArrayList<ContactNumbers> getContact() {
+        return contact;
     }
 
     public String getFirstName(){
@@ -63,10 +67,6 @@ public class Person {
         return address;
     }
 
-    public void setWork(String work) {
-        contact.set(0,work);
-    }
-
     /*public String getWork(){
         return contact.get(0);
     }*/
@@ -74,6 +74,7 @@ public class Person {
     //public void setRelationships(String person1, String person2, String role) {
     //    relation.add(person1 + "->" + role + ":" + person2);
     //}
+
 
 
     public ArrayList<Relation> getRelationships() {
@@ -85,6 +86,10 @@ public class Person {
             }
         }
         return newRel;
+    }
+
+    public void setRelation(ArrayList<Relation> relation) {
+        this.relation = relation;
     }
 
     public void setPersonalEmail(String personalEmail) {
@@ -101,6 +106,13 @@ public class Person {
 
     public String getWorkEmail(){
         return workEmail;
+    }
+
+    public void setBirth(String birth) {
+        this.birth = birth;
+    }
+    public  String getBirth() {
+        return birth;
     }
 
 
