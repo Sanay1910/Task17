@@ -1,0 +1,35 @@
+h1{
+    font-family: monospace;
+
+}
+
+#h1_div{
+    width: 50%;
+    margin: auto;
+    border-bottom: solid;
+    border-top: solid;
+
+}
+
+#showAllDiv{
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+#searchDiv{
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+button {
+    font-family: monospace;
+    background: none;
+    border: solid;
+    transition-duration: 0.6s;
+}
+
+button:hover {
+  background: BLACK;
+    color: white;
+}

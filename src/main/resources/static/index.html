@@ -3,8 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Task 17</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+
+    <script type="text/javascript">
+    function searchAngel(){
+        searchVal = document.getElementById("angelSearch").value;
+        window.location = "http://craigs-list.herokuapp.com/person/" + searchVal;
+    }
+    </script>
+
 </head>
 <body>
-<p>THIS IS SPARTA!!!</p>
+<div id="h1_div">
+    <h1 align="center">Welcome to Craig's List</h1>
+</div>
+
+<div id = "showAllDiv">
+    <button id="showAllButton" onclick="window.location.href = 'http://craigs-list.herokuapp.com/person';">Show Craig's Angels</button>
+
+</div>
+
+
+<div id = "searchDiv">
+    <input type="text" id="angelSearch" placeholder="ID, First Name or Last Name">
+    <button align="right" onclick="searchAngel()" id="a">Search for an Angel</button>
+
+</div>
+
+
+
+
 </body>
 </html>
