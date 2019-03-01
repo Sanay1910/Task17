@@ -10,7 +10,7 @@ public class RelationController {
         System.out.println("Trying to find person: " + ID);
         Relation returnRelation = null;
         for (Relation rel : SQLtoREST.relation) {
-            if (rel.ID.equals(ID)) {
+            if (rel.ID==(ID)) {
                 System.out.println(" --- RELATION --- ");
                 returnRelation = rel;
             }
@@ -26,7 +26,7 @@ public class RelationController {
         System.out.println("Trying to find relation: " + ID);
         Relation returnRelation = null;
         for (Relation rel : SQLtoREST.relation) {
-            if (rel.ID.equals(ID)) {
+            if (rel.ID==(ID)) {
                 System.out.println(" --- RELATION FOUND --- ");
                 returnRelation = rel;
             }

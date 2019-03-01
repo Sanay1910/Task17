@@ -135,7 +135,7 @@ public class Select {
 
     public static ArrayList<Relation> relatives2(){
         ArrayList<Relation> relations= new ArrayList<>();
-
+        relations.clear();
         String sql = "SELECT p1.ID as personID, p2.firstName as relativeName, relationship" +
                 " FROM relation INNER JOIN person p1 ON relation.fromPersonID = p1.ID" +
                 " INNER JOIN person p2 ON relation.toPersonID = p2.ID" +
@@ -150,7 +150,7 @@ public class Select {
             while (rs.next()) {
                 relations.add(
                         new Relation(
-                                rs.getString("personID"),
+                                rs.getInt("personID"),
                                 rs.getString("relationship"),
                                 rs.getString("relativeName")
                 ));

@@ -44,17 +44,14 @@ public class SQLtoREST {
                             " INNER JOIN relationType ON relation.relation = relationType.id "
                     );
             ResultSet rs2 = preparedStatement2.executeQuery();
-
+            relation.clear();
             while (rs2.next()) {
                 relation.add(
                         new Relation(
-                                rs2.getString("p1.ID"),
-                                rs2.getString("p2.relativeName"),
+                                rs2.getInt("ID"),
+                                rs2.getString("relativeName"),
                                 rs2.getString("relationship")
                         ));
-            }
-            for(Relation rel: relation){
-                System.out.println(rel);
             }
         }
         catch (Exception e){
@@ -85,6 +82,7 @@ public class SQLtoREST {
                     );
             ResultSet resultSet = preparedStatement.executeQuery();
 
+            person.clear();
             ArrayList<ContactNumber> contact = new ArrayList<>();
             while (resultSet.next()) {
 
@@ -95,10 +93,10 @@ public class SQLtoREST {
                                 resultSet.getString("lastName"),
                                 resultSet.getString("birth"),
                                 resultSet.getString("Address"),
-                                new ContactNumber(resultSet.getString("work"),resultSet.getString("home"),resultSet.getString("mobile")),
+                                relatives2(),
                                 resultSet.getString("personalMail"),
                                 resultSet.getString("workMail"),
-                                relatives2()
+                                new ContactNumber(resultSet.getString("work"),resultSet.getString("home"),resultSet.getString("mobile"))
                         ));
             }
 
@@ -136,7 +134,7 @@ public class SQLtoREST {
                     " FROM HomeAddress" +
                     " LEFT JOIN person ON person.addressID = homeAddress.ID" */
             ResultSet resultSet = preparedStatement.executeQuery();
-
+            address.clear();
             while (resultSet.next()) {
 
                 address.add(

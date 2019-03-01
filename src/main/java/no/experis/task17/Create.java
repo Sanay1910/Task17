@@ -9,6 +9,21 @@ public class Create {
         String url = "jdbc:sqlite:src/main/resources/people.sqlite";
 
         // SQL statement for creating a new table
+        /*String sql = "CREATE TABLE IF NOT EXISTS person (\n"
+                + "	id integer PRIMARY KEY,\n"
+                + "	firstName text NOT NULL,\n"
+                + "	lastName text NOT NULL,\n"
+                + "	birth text NOT NULL,\n"
+                + "	addressID integer NOT NULL,\n"
+                + "	relatives text NULL,\n"
+                + "	personalMail text NULL,\n"
+                + "	workMail text NULL,\n"
+                + " contactID integer NOT NULL,\n"
+                + " FOREIGN KEY(addressID) REFERENCES homeAddress (ID),"
+                + " FOREIGN KEY(contactID) REFERENCES contactNumber (ID)"
+                + ");";
+        */
+
         String sql = "CREATE TABLE IF NOT EXISTS person (\n"
                 + "	id integer PRIMARY KEY,\n"
                 + "	firstName text NOT NULL,\n"
@@ -102,9 +117,9 @@ public class Create {
         //ID, Work, Home, Mobile
         String sql = "CREATE TABLE IF NOT EXISTS contactNumber (\n"
                 + "	id integer PRIMARY KEY,\n"
-                + "	work text NULL UNIQUE,\n"
-                + "	home text NULL UNIQUE,\n"
-                + "	mobile text NOT NULL UNIQUE\n"
+                + "	work text NULL,\n"
+                + "	home text NULL,\n"
+                + "	mobile text NOT NULL\n"
                 + ");";
 
         try (Connection conn = DriverManager.getConnection(url);

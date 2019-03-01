@@ -7,33 +7,18 @@ import static no.experis.task17.SQLtoREST.*;
 public class Task17Application {
 
 	public static void main(String[] args) {
-		//SpringApplication.run(Task17Application.class, args);
-
-		//SpringApplication.run(task17.class, args);
-
-		//createNewDatabase("people.sqlite");
-		//createNewTable();
-		//Menu run = new Menu();
-
-		//t.test();
-
-		//run.menu(select);
-
-
-		//select.person();
-		//select.personAll();
 
 		openConn();
 		readPeople();
 		openConn();
 		readAddress();
-		//listAll();
+		openConn();
+		readRelations();
 
-		Select select = new Select();
-		//select.person();
-		//select.relatives();
-		//select.relatives2();
 
+
+		Task17Application t = new Task17Application();
+		//t.test();
 		SpringApplication.run(SQLtoREST.class, args);
 	}
 
@@ -51,9 +36,6 @@ public class Task17Application {
 		create.homeAddress();
 		create.contactNumber();
 
-		//select.relatives();
-
-		//SpringApplication.run(task17.class, args);
 
 
 		insert.relationType("Father");
