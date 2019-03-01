@@ -1,5 +1,7 @@
 https://craigs-list.herokuapp.com
 
+Team: Sanay Oo, Philippe Rasay Guerrero, Bartek Gembala
+
 supports:  /address   /address/{ID}   /person   /person/{ID}  /person/{firstname}  /person/{lastname} 
 
 
