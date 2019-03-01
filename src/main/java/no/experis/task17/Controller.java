@@ -175,14 +175,29 @@ public class Controller {
        return 0;
     }
 
-    @GetMapping("/person/{ID}")
+    @GetMapping("/person/{ID:[0-9]+}")
     public Person personGet(@PathVariable int ID) {
-        openConn();
-        readPeople();
         System.out.println("Trying to find person: " + ID);
         Person returnPerson = null;
         for (Person per : SQLtoREST.person) {
             if (per.ID==(ID)) {
+                System.out.println(" --- PERSON FOUND --- ");
+                returnPerson = per;
+            }
+        }
+        if (returnPerson == null) {
+            System.out.println(" --- PERSON WAS NOT FOUND --- ");
+        }
+        return returnPerson;
+
+    }
+
+    @GetMapping("/person/{name:[a-zA-Z]+}")
+    public Person personGetByName(@PathVariable String name) {
+        System.out.println("Trying to find person: " + name);
+        Person returnPerson = null;
+        for (Person per : SQLtoREST.person) {
+            if (per.firstName.equalsIgnoreCase(name) || per.lastName.equalsIgnoreCase(name)) {
                 System.out.println(" --- PERSON FOUND --- ");
                 returnPerson = per;
             }
